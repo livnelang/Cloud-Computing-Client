@@ -1,8 +1,27 @@
 app.factory('categoriesFactory', function($http, $q) {
-    console.log('factory loaded');
-    var url = 'http://localhost:3000/';
     var _prodFactory = {};
     _prodFactory.pictures = {};
+
+    console.log('factory loaded');
+    // var url = 'http://localhost:3000/';
+    var url ='http://52.35.37.150:3000/';
+
+
+    // // test localhost server first
+    // $.ajax(url + 'online', {
+    //     timeout:500,
+    //     error: function (request, status, error) {
+    //         alert(request.responseText);
+    //         changeUrl();
+    //     }
+    // });
+    //
+    // function changeUrl() {
+    //     url = 'http://52.35.37.150:3000';
+    // }
+
+
+
 
     $http.post(url + 'api/picture/picturesByCategory').then( function(response) {
         _prodFactory.items = response.data;
