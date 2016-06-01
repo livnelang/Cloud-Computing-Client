@@ -50,8 +50,8 @@ app.controller('mainController',['$scope','$location','categoriesFactory','$stat
     //     // $scope.setCategories();
     // });
 
-    // var url = 'http://localhost:3000/';
-    var url ='http://52.40.208.124:3000/';
+    var url = 'http://localhost:3000/';
+    // var url ='http://52.40.208.124:3000/';
     $scope.url = url;  // set the default url
 
 
@@ -94,7 +94,7 @@ app.controller('mainController',['$scope','$location','categoriesFactory','$stat
 /**
  * upload controller
  */
-app.controller('uploadController',['$scope','$location','$http', function ($scope, $location, $http) {
+app.controller('uploadController',['$scope','$location','$http','$state', function ($scope, $location, $http, $state) {
     console.log('upload Ctrl');
     $scope.picture = {};
     $scope.isUpload = false;
@@ -121,6 +121,10 @@ app.controller('uploadController',['$scope','$location','$http', function ($scop
 
         $http.post($scope.url + 'api/picture', $scope.picture).then( function(response) {
             // toggle back-off upload classes
+            if(response.data.status) {
+                alert('wrong authentication');
+                $state.go('gallery', {}, {reload: true});
+            }
             $scope.isUpload = false;
             $scope.isDone = true;
             console.log(response);
