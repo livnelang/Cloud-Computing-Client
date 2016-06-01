@@ -4,35 +4,20 @@ app.factory('categoriesFactory', function($http, $q) {
 
     console.log('factory loaded');
     // var url = 'http://localhost:3000/';
-    var url ='http://52.35.37.150:3000/';
+    var url ='http://52.40.208.124:3000/';
 
 
-    // // test localhost server first
-    // $.ajax(url + 'online', {
-    //     timeout:500,
-    //     error: function (request, status, error) {
-    //         alert(request.responseText);
-    //         changeUrl();
-    //     }
-    // });
-    //
-    // function changeUrl() {
-    //     url = 'http://52.35.37.150:3000';
-    // }
-
-
-
-
-    $http.post(url + 'api/picture/picturesByCategory').then( function(response) {
-        _prodFactory.items = response.data;
+    $http.get(url + 'getRedisImages').then( function(response) {
+        _prodFactory.pictures = response.data.data;
+        console.log('factory data is here');
     });
 
 
     /**
-    * Get All pictures from API divided by their categories
+    * Get All pictures from API
     */
     _prodFactory.getPictures = function() {
-        return $http.post(url + 'api/picture/picturesByCategory');
+        return $http.get(url + 'getRedisImages');
     };
 
     /**

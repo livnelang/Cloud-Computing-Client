@@ -6,7 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider)  {
 
     $stateProvider
         .state('gallery', {
-            url: '/gallery?cat',
+            url: '/gallery',
             templateUrl: '../views/gallery.html',
             controller: 'galleryCtrl'
         })
@@ -19,8 +19,18 @@ app.config(function($stateProvider, $urlRouterProvider)  {
             url: '/picturePanel',
             templateUrl: '../views/picturePanel.html',
             controller: 'picturePanelCtrl'
+        })
+        .state('upload', {
+            url: '/upload',
+            templateUrl: '../views/upload.html',
+            controller: 'uploadController'
         });
-});
+        // .state('login', {
+        //     url: '/login',
+        //     templateUrl: '../views/login.html',
+        //     controller: 'picturePanelCtrl'
+        // });
+}); 
 
 
 /**
@@ -34,11 +44,17 @@ app.controller('mainController',['$scope','$location','categoriesFactory','$stat
     var catgs = ['sports', 'nature','music', 'cartoons'];
     console.log('mainController panel ..');
 
-    categoriesFactory.getPictures().then(function(data)  {
-        console.log('data is here');
-        $scope.data = data.data;
-        $scope.setCategories();
-    });
+    // categoriesFactory.getPictures().then(function(data)  {
+    //     console.log('data is here');
+    //     // $scope.data = data.data;
+    //     // $scope.setCategories();
+    // });
+
+    // var url = 'http://localhost:3000/';
+    var url ='http://52.40.208.124:3000/';
+    $scope.url = url;  // set the default url
+
+
 
 
     /**
@@ -73,3 +89,44 @@ app.controller('mainController',['$scope','$location','categoriesFactory','$stat
         $(".main-sidebar").toggleClass("expand");
     }
 }]) ;
+
+
+/**
+ * upload controller
+ */
+app.controller('uploadController',['$scope','$location','$http', function ($scope, $location, $http) {
+    console.log('upload Ctrl');
+    $scope.picture = {};
+    $scope.isUpload = false;
+    $scope.isDone = false;
+    $scope.current_upload = false;
+
+    $scope.url = $scope.$parent.url;
+    console.log($scope.url);
+
+
+
+    /*
+     * On upload click
+     */
+    $scope.upload = function() {
+        // toggle upload classes
+        $scope.isUpload = true;
+        $scope.current_upload = true;
+        
+        
+        console.log('upload clicked');
+        console.dir($scope.picture);
+
+
+        $http.post($scope.url + 'api/picture', $scope.picture).then( function(response) {
+            // toggle back-off upload classes
+            $scope.isUpload = false;
+            $scope.isDone = true;
+            console.log(response);
+        });
+    };
+
+
+
+}]);

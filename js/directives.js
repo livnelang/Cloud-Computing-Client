@@ -69,3 +69,29 @@ app.directive('adminFooter',function(){
         }
     };
 });
+
+
+app.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "=",
+            filename: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                };
+                var fname = changeEvent.target.files[0].name;
+                fname = fname.substr(0, fname.lastIndexOf("."));
+                console.log(fname);
+
+                scope.filename = fname;
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);

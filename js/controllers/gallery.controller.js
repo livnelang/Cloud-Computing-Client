@@ -1,6 +1,5 @@
 app.controller('galleryCtrl',['$scope','$stateParams','$location', 'categoriesFactory', function ($scope, $stateParams,$location, categoriesFactory) {
-    var cat = $stateParams['cat'];
-    $scope.pictures = categoriesFactory.pictures[cat];
+    $scope.pictures = categoriesFactory.pictures;
 
     /**
     * when user has clicked single image,

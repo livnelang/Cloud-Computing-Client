@@ -6,9 +6,33 @@
 		<!-- Indicates a successful or positive action -->
 		<button type = "button" class = "btn btn-success">Edit</button>
 		<!-- Indicates a successful or positive action -->
-		<button type = "button" class = "btn btn-success">Delete</button>
+		<button ng-click="deletePicture()" type = "button" class = "btn btn-success">Delete</button>
 		<!-- Indicates a successful or positive action -->
 		<button type = "button" class = "btn btn-success">Replace</button>
 
 	</section>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure you want to remove picture?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button ng-click="deleteApproved()" type="button" class="btn btn-default">Yes</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 </div>

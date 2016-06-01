@@ -2,6 +2,7 @@ html, body, .ng-scope {
   height: 100%;
 }
 
+
 /**
 * Mixins
 */
@@ -16,10 +17,38 @@ html, body, .ng-scope {
   transform: translateX(-50%);
 }
 
-.wrapper {
-  height:auto;
+.vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back_load {
+  opacity: 0.3;
+  pointer-events: none;
+}
+.upload_image {
+  background: url('/img/hourglass.svg') no-repeat;
+  background-position: 50% 50%;
+}
+
+.done_upload {
+  background: url('/img/approved.png') no-repeat;
+  background-position: 50% 50%;
+}
+
+#wrapper {
+  height: 100%;
   width:auto;
-  color:beige;
+  .view {
+    float: left;
+    width: 80%;
+
+    @media screen and (max-width: 480px) {
+      width: 100%;
+      //height:auto;
+    }
+  }
 }
 
 /**
@@ -34,6 +63,10 @@ html, body, .ng-scope {
   height:100%;
   @media screen and (max-width: 767px) {
     display: none;
+  }
+
+  @media screen and (max-width: 480px) {
+    width:30%;
   }
 }
 
@@ -80,6 +113,8 @@ html, body, .ng-scope {
 #menu-toggle {
   float:left;
   margin-left: 5%;
+  .vertical-align;
+  position: absolute;
 }
 
 /**
@@ -101,24 +136,36 @@ main {
 */
 header {
   width: 100%;
+  border-bottom: 1px solid #eee;
+  position: relative;
   .page-header {
     margin:0px;
+    border-bottom: 0px;
   }
 
   h1 {
     text-align: center;
     font-family: serif;
+    margin-top: 0px;
+    padding-top: 10px;
+  }
+  .login {
+    .vertical-align;
+    right: 2%;
+    position: absolute;
   }
 }
 
 
 .gallery-container {
   width: 90%;
+  padding-top: 10px;
   .centered-element;
 
 }
 .picture-frame {
   cursor: pointer;
+  height: auto;
   a {
     pointer-events: none;
   }
@@ -160,3 +207,54 @@ header {
     }
   }
 }
+
+
+/**
+* Login form
+*/
+.login-form {
+  position: relative;
+  top: 15%;
+}
+
+.main-sidebar .upload_li {
+  margin-top: 10px;
+  color: darkgoldenrod;
+}
+
+/*
+* Upload Page
+*/
+.upload  {
+  top: 50px;
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+
+  .send {
+    margin-top: 15px;
+  }
+
+  .group {
+    padding-top: 5px;
+  }
+}
+
+.image_transaction {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  //height:auto;
+
+  width: 100%;
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/**
+* Modal
+*/
+
