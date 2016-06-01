@@ -50,8 +50,8 @@ app.controller('mainController',['$scope','$location','categoriesFactory','$stat
     //     // $scope.setCategories();
     // });
 
-    var url = 'http://localhost:3000/';
-    // var url ='http://52.40.208.124:3000/';
+    // var url = 'http://localhost:3000/';
+    var url ='http://52.40.208.124:3000/';
     $scope.url = url;  // set the default url
 
 

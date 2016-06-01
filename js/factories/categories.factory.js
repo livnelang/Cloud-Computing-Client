@@ -3,8 +3,8 @@ app.factory('categoriesFactory', function($http, $q) {
     _prodFactory.pictures = {};
 
     console.log('factory loaded');
-    var url = 'http://localhost:3000/';
-    // var url ='http://52.40.208.124:3000/';
+    // var url = 'http://localhost:3000/';
+    var url ='http://52.40.208.124:3000/';
 
 
     $http.get(url + 'getRedisImages').then( function(response) {
